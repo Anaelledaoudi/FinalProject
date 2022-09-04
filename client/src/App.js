@@ -6,6 +6,9 @@ import Register from './components/Register.js';
 import myImg from './assets/logotitle.png';
 import { createContext, useState } from 'react';
 import Redirect from './components/Redirect';
+import EventHome from './components/EventHome';
+import OrganisationHome from './components/OrganisationHome';
+import Example from './components/Cal.jsx';
 
 export const AppContext = createContext(null);
 
@@ -31,6 +34,9 @@ function App() {
       <Route path='/signin' element={<Login />} />
       <Route path='/signup' element={<Register />} />
       <Route path='/redirect' element={<Redirect/>} />
+      <Route path='/event' element={<EventHome/>} />
+      <Route path='/organisation' element={<OrganisationHome/>} />
+      <Route path='/cal' element={<Example/>} />
     </Routes>
     </AppContext.Provider>
  
