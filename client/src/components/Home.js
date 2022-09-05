@@ -7,7 +7,7 @@ const Home=(props)=>{
     <div className='pic'>
         {/* <h1>Your leftovers could be their meal</h1> */}
         {/* <h4>Thank you for bringing them some of your joy!</h4> */}
-        <button onClick={()=>navigate('/signup')}>Start</button>
+        <button className='btn' onClick={()=>navigate('/signup')}>Start</button>
     </div>
     <div className='img'>
       <div className='explanation'>

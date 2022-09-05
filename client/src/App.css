@@ -1,14 +1,14 @@
 .navbar{
   padding:20px;
   /* background-color:#2e6793; */
-   background-color:rgb(92, 97, 126); 
+   /* background-color:rgb(92, 97, 126);  */
   font-size:30px;
   display: flex;
   justify-content: space-between;
   position: fixed;
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  height: 20px;
+  height: 50px;
 }
 a{
   color: #f5f3ef;
@@ -25,10 +25,13 @@ a{
   border: 2px solid black;
 } */
 .logo{
-  margin-top: -17px;
-  width: 55px;
-  height: 55px;
+  margin-top: -25px;
+  width: 115px;
+  height: 60px;
 }
 body{
   background-color: #f4f0e4;
+}
+.home{
+  font-family: 'Gloria Hallelujah', cursive;
 }

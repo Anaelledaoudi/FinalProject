@@ -1,9 +1,10 @@
+// import './input.css';
 import './App.css';
 import { Link, Route, Routes } from 'react-router-dom';
 import Home from './components/Home.js';
 import Login from './components/Login.js';
 import Register from './components/Register.js';
-import myImg from './assets/logotitle.png';
+import myImg from './assets/log.png';
 import { createContext, useState } from 'react';
 import Redirect from './components/Redirect';
 import EventHome from './components/EventHome';
@@ -21,7 +22,7 @@ function App() {
    <nav className='navbar'>
       <img src={myImg} className='logo'></img>
       <div>
-        <Link to='/' style={{padding:'0 10px'}}>Home</Link>
+        <Link to='/' style={{padding:'0 10px'}} className='home'>HEARTSHARE</Link>
       </div>
       <div className='sign'>
         <Link to='/signin' style={{padding:'0 10px'}}>SignIn</Link>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {useContext, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Register.css';
 
 import { AppContext } from '../App';
 
@@ -30,7 +31,7 @@ const Login=(props)=>{
       }
     }
     return(
-    <div style={{
+    <div className='form' style={{
             margin:'5px auto',
             width:'300px',
             textAlign:'left'}}>
@@ -40,7 +41,7 @@ const Login=(props)=>{
                 onChange={(e)=>setEmail(e.target.value)}/><br/>
           <input type='password' placeholder='Password'
                 onChange={(e)=>setPassword(e.target.value)}/><br/>
-          <input type='submit' value='Login' />
+          <input type='submit' value='Login' className='regBtn'/>
        </form>
     </div>
     )
