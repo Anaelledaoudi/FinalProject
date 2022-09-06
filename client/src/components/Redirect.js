@@ -7,8 +7,8 @@ const Redirect=(props)=>{
          <h2>Redirect</h2>
          <h4>Continue as:</h4>
          <div>
-            <button onClick={()=>navigate('/event')}>Event</button>
-            <button onClick={()=>navigate('/organisation')}>Organization</button>
+            <button onClick={()=>navigate('/addEvent')}>Event</button>
+            <button onClick={()=>navigate('/calEvent')}>Organization</button>
          </div>
        </>
     )
