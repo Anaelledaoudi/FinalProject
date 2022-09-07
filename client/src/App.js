@@ -5,7 +5,7 @@ import Home from './components/Home.js';
 import Login from './components/Login.js';
 import Register from './components/Register.js';
 import myImg from './assets/log.png';
-import { createContext, useState } from 'react';
+import { createContext, useState,useEffect } from 'react';
 import Redirect from './components/Redirect';
 import Example from './components/CalEvent.jsx';
 import AddEvent from './components/AddEvent.js';
@@ -14,6 +14,10 @@ export const AppContext = createContext(null);
 
 
 function App() {
+  useEffect(()=>{
+    const bodyA=document.body;
+    bodyA.classList.add('bodyApp');
+  },[])
   const [token,setToken]=useState('');
   return (
    <AppContext.Provider value={{token,setToken}}>

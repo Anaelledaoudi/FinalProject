@@ -35,7 +35,7 @@ const Login=(props)=>{
             margin:'5px auto',
             width:'300px',
             textAlign:'left'}}>
-       <h2>Log in</h2>
+       <p className='reg'>Log in</p>
        <form onSubmit={login}>
           <input type='email' placeholder='email'
                 onChange={(e)=>setEmail(e.target.value)}/><br/>

@@ -12,8 +12,8 @@ const Register = (props) => {
   const navigate = useNavigate();
 
   useEffect(()=>{
-    // const body=document.body;
-    // body.className.add('bodyLog');
+    const bodyLog=document.body;
+    bodyLog.classList.add('bodyLog');
   },[])
 
   const register = async (e) => {
@@ -36,7 +36,7 @@ const Register = (props) => {
       margin:'5px auto',
       width:'300px',
       textAlign:'left'}}>
-      <h2>Register</h2>
+      <p className='reg'>Register</p>
       <div>
       <form  onSubmit={register}>
         <input type='text' placeholder='Username'

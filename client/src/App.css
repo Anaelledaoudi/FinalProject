@@ -9,6 +9,7 @@
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: 50px;
+  /* background-color: rgba(244, 228, 171, 0.355); */
 }
 a{
   color: #f5f3ef;
@@ -20,6 +21,7 @@ a{
   font-size: 14px;
   text-decoration:underline;
   margin-right: 5%;
+  color: white;
 }
 /* *{
   border: 2px solid black;
@@ -29,9 +31,10 @@ a{
   width: 115px;
   height: 60px;
 }
-body{
+.bodyApp{
   background-color: #f4f0e4;
 }
 .home{
   font-family: 'Gloria Hallelujah', cursive;
+  color: #32d8f2;
 }
