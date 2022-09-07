@@ -20,6 +20,7 @@ import {
 import { Fragment, useState, useEffect, useContext} from 'react'
 import {AppContext} from '../App'
 import jwt_decode from 'jwt-decode';
+import {useNavigate} from 'react-router-dom';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -35,6 +36,7 @@ export default function AddEvent() {
   let [username, setUsername] = useState('')
   const [msg,setMsg] = useState('')
   const imageurl='https://i.pinimg.com/originals/d3/7e/84/d37e843d31252c02e0b6119d126d6014.jpg'
+  const navigate = useNavigate();
 
   const {token} = useContext(AppContext);
 
@@ -70,6 +72,8 @@ export default function AddEvent() {
   }
 
   useEffect(()=>{
+    const body=document.body;
+    body.classList.add('bodyHome');
     try{
       const decode = jwt_decode(token);
       console.log(decode);
@@ -87,7 +91,7 @@ export default function AddEvent() {
 
   return (
     <>
-    <h2>Please fill the date of your event:</h2>
+    <i class="fa-solid fa-chevron-left" onClick={()=>navigate('/redirect')}>Back</i>
     <div className="pt-16">
       <div className="max-w-md px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">

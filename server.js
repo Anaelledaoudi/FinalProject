@@ -9,7 +9,7 @@ dotenv.config();
 
 const app=express();
 
-// email sending api
+
 
 
 app.listen(process.env.PORT||8080, ()=>{

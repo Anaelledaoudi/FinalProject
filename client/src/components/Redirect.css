@@ -1,0 +1,30 @@
+.redirbtns{
+    margin-left:20% ;
+}
+#b1{
+    background-image:url('../assets/event.jpg');
+    background-size:cover;
+}
+#b2{
+    background-image:url('../assets/hhh.png'); 
+    background-size:cover;
+}
+#b1,#b2{
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.btnredir:hover{
+    opacity: 0.5;
+}
+.title{
+    text-align: center;
+    font-size: 2em;
+}
+.redirect{
+    top:50px;
+}
+i{
+    position: relative;
+    top:50px; 
+}

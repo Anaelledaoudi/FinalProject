@@ -21,6 +21,7 @@ import {
 import { Fragment, useState, useEffect, useContext } from 'react';
 import {AppContext} from '../App'
 import jwt_decode from 'jwt-decode';
+import {useNavigate} from 'react-router-dom';
 
 const nn = [
   {
@@ -75,6 +76,7 @@ export default function Example() {
   let firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date())
   let [meetings, setMeetings] = useState([])
   let [email,setEmail]=useState('');
+  const navigate = useNavigate();
 
   const {token} = useContext(AppContext);
 
@@ -92,8 +94,10 @@ export default function Example() {
     let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 })
     setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'))
   }
-  
+ 
   useEffect(()=>{
+    const body=document.body;
+    body.classList.add('bodyHome');
     try{
       const decode = jwt_decode(token);
       console.log(decode);
@@ -127,6 +131,8 @@ export default function Example() {
   )
 
   return (
+    <>
+    <i class="fa-solid fa-chevron-left" onClick={()=>navigate('/redirect')}>Back</i>
     <div className="pt-16">
       <div className="max-w-md px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
@@ -232,6 +238,7 @@ export default function Example() {
         </div>
       </div>
     </div>
+    </>
   )
 }
 
