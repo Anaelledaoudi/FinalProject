@@ -1,14 +1,20 @@
-/* body{
+.bodyLog{
     background-image: url('../assets/hand.jpg');
     background-size:cover;
-} */
-.form{
+}
+.form, .redirect{
     position: relative;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: white;
     border-radius: 5px;
     padding: 5%;
     top:150px
+}
+.form, .btnredir{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    margin: 2%;
+    height: 250px;
+    border-radius: 20px;
+    width: 30%;
 }
 .regBtn{
     border-radius: 3px;
@@ -23,3 +29,4 @@
     border: none;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+

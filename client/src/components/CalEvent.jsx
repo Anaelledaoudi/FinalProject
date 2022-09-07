@@ -18,8 +18,9 @@ import {
   parseISO,
   startOfToday,
 } from 'date-fns'
-import { Fragment, useState, useEffect } from 'react'
-
+import { Fragment, useState, useEffect, useContext } from 'react';
+import {AppContext} from '../App'
+import jwt_decode from 'jwt-decode';
 
 const nn = [
   {
@@ -73,6 +74,9 @@ export default function Example() {
   let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'))
   let firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date())
   let [meetings, setMeetings] = useState([])
+  let [email,setEmail]=useState('');
+
+  const {token} = useContext(AppContext);
 
   let days = eachDayOfInterval({
     start: firstDayCurrentMonth,
@@ -90,10 +94,19 @@ export default function Example() {
   }
   
   useEffect(()=>{
+    try{
+      const decode = jwt_decode(token);
+      console.log(decode);
+      setEmail(decode.useremail);
+      console.log(decode.useremail)
+    }
+    catch(e){
+      console.log(e);
+    }
     showEvents()
   },[])
 
-  async function showEvents(){
+   async function showEvents(){
     try{
       const results = await axios.get('/getEvents');
       if(results.status === 200){
@@ -210,7 +223,7 @@ export default function Example() {
               {selectedDayMeetings.length > 0 ? (
                 selectedDayMeetings.map((meeting) => (
                   <Meeting meeting={meeting} key={meeting.event_id} />
-                ))
+                  ))
               ) : (
                 <p>No events for today.</p>
               )}
@@ -225,11 +238,38 @@ export default function Example() {
 function Meeting({ meeting }) {
   let startDateTime = parseISO(meeting.eventdate)
   // let endDateTime = parseISO(meeting.endDatetime)
- 
-  function bookDate(){
-    console.log('blablablabla');
+  
+
+  function bookDate(evt){
+    console.log(evt.target.value);
+    sendEmail(evt.target.value);
+    deleteEvent(evt.target.value);
    }
    
+   async function sendEmail(params){
+    try{
+      const result = await axios.get(`/getEmail/${params}`,{
+      })
+      console.log(result);
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
+
+  async function deleteEvent(params){
+    try{
+      const result = await axios.put(`/delEvent/${params}`,{
+      })
+      if(result.status==200){
+        //showEvents();
+      }
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
+
   return (
     <li className="flex items-center px-4 py-2 space-x-4 group rounded-xl focus-within:bg-gray-100 hover:bg-gray-100">
       <img
@@ -275,6 +315,8 @@ function Meeting({ meeting }) {
               <Menu.Item>
                 {({ active }) => (
                   <button
+
+                    value={meeting.event_id}
                     onClick={bookDate}
                     className={classNames(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
