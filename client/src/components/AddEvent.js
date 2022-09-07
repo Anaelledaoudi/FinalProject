@@ -69,6 +69,8 @@ export default function AddEvent() {
     catch(e){
       setMsg(e.response.data.msg)
     }
+    const div=document.getElementById('resOk');
+    div.classList.remove('disappear');
   }
 
   useEffect(()=>{
@@ -179,8 +181,9 @@ export default function AddEvent() {
               <time dateTime={format(selectedDay, 'yyyy-MM-dd')}>
                 {format(selectedDay, 'MMM dd, yyy')}
               </time>
-              <input type='text' onChange={changeEvent} placeholder='Name of the event'/>
+              <input className='input' type='text' onChange={changeEvent} placeholder='Name of the event'/>
               <button onClick={addData} class="bg-red-400 hover:bg-red-500 text-white font-semibold py-1 px-4 border m-2 rounded shadow"> Add</button>
+             <div id='resOk' class='res disappear'>You event was added successfully</div>
             </h2>
             {msg}
 

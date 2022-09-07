@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import users_router from './routes/Users.js'
 import events_router from './routes/Events.js'
-
+import Sib from 'sib-api-v3-sdk';
 dotenv.config();
 
 const app=express();

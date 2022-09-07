@@ -75,10 +75,10 @@ export default function Example() {
   let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'))
   let firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date())
   let [meetings, setMeetings] = useState([])
-  let [email,setEmail]=useState('');
+  
   const navigate = useNavigate();
 
-  const {token} = useContext(AppContext);
+  
 
   let days = eachDayOfInterval({
     start: firstDayCurrentMonth,
@@ -98,15 +98,6 @@ export default function Example() {
   useEffect(()=>{
     const body=document.body;
     body.classList.add('bodyHome');
-    try{
-      const decode = jwt_decode(token);
-      console.log(decode);
-      setEmail(decode.useremail);
-      console.log(decode.useremail)
-    }
-    catch(e){
-      console.log(e);
-    }
     showEvents()
   },[])
 
@@ -238,6 +229,7 @@ export default function Example() {
         </div>
       </div>
     </div>
+    <div id='resOk' class='res disappear'>Booked, wait for an answer in email</div>
     </>
   )
 }
@@ -245,24 +237,52 @@ export default function Example() {
 function Meeting({ meeting }) {
   let startDateTime = parseISO(meeting.eventdate)
   // let endDateTime = parseISO(meeting.endDatetime)
+  const {token} = useContext(AppContext);
+  let [uemail,setUemail]=useState('');
+  let [params,setParams]=useState('');
   
+
+  useEffect(()=>{
+    try{
+      const decode = jwt_decode(token);
+      console.log(decode);
+      setUemail(decode.useremail);
+      console.log(decode.useremail)
+    }
+    catch(e){
+      console.log(e);
+    }
+  },[])
 
   function bookDate(evt){
     console.log(evt.target.value);
-    sendEmail(evt.target.value);
-    deleteEvent(evt.target.value);
+    setParams(evt.target.value);
+    getEmail(evt.target.value);
+    
+    const div=document.getElementById('resOk');
+    div.classList.remove('disappear');
    }
    
-   async function sendEmail(params){
+   async function getEmail(params){
     try{
-      const result = await axios.get(`/getEmail/${params}`,{
-      })
-      console.log(result);
+      const result = await axios.get(`/getEmail/${params}`);
+      sendEmail(result.data[0].email);
     }
     catch(e){
       console.log(e);
     }
   }
+
+     async function sendEmail(mail){
+      try{
+        const result = await axios.get(`/sendEmail/${mail}/${uemail}`);
+        console.log('send');
+      }
+      catch(e){
+        console.log(e);
+      }
+     deleteEvent(params);
+     }
 
   async function deleteEvent(params){
     try{

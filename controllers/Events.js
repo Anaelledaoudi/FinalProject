@@ -51,12 +51,8 @@ export const GetEvents = (req, res) =>{
      db('events')
     .select('email')
     .where({event_id:req.params.id})
-    .returning('*')
     .then(rows=>{
-      const e=res.json(rows)
-      console.log('row=>',rows);
-      console.log('e=>',e);
-      // SendEmail(e);
+      res.json(rows)
     })
     .catch(e=>{
       console.log(e);
@@ -64,7 +60,7 @@ export const GetEvents = (req, res) =>{
   })
   }
 // email sending api
-  const SendEmail=(email)=>{
+  export const SendEmail=(req,res)=>{
     const client=Sib.ApiClient.instance;
     const apiKey=client.authentications['api-key'];
     apiKey.apiKey=process.env.API_KEY;
@@ -77,7 +73,8 @@ export const GetEvents = (req, res) =>{
 }
     const receivers=[
     {
-        email:'anaelledaoudi@gmail.com'
+        email:req.params.id
+        
     }
 ]
     tranEmailApi.sendTransacEmail({
@@ -85,7 +82,7 @@ export const GetEvents = (req, res) =>{
     to:receivers,
     subject:'Heartshare thanks you, someone books!',
     textContent:`
-    An organization book for your date, you can contact them at the mail: {{orgMail}} . Thanks for  your generosity!
+    An organization book for your date, you can contact them at the mail: ${req.params.q} . Thanks for  your generosity!
     `,
     // htmlContent:`
     // <h1>HEARTSHARE thanks you</h1>
