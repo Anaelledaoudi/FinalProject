@@ -20,7 +20,8 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^2.3.0",
     "pg": "^8.8.0",
-    "pg-hstore": "^2.3.4"
+    "pg-hstore": "^2.3.4",
+    "sib-api-v3-sdk": "^8.4.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"

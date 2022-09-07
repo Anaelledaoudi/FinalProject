@@ -4,12 +4,14 @@ const Redirect=(props)=>{
     const navigate = useNavigate();
     return(
        <>
-         <h2>Redirect</h2>
-         <h4>Continue as:</h4>
+         <div className='redirect'>
+            <h4>Continue as:</h4>
          <div>
-            <button onClick={()=>navigate('/addEvent')}>Event</button>
-            <button onClick={()=>navigate('/calEvent')}>Organization</button>
+            <button className='btnredir' onClick={()=>navigate('/addEvent')}>Event</button>
+            <button className='btnredir' onClick={()=>navigate('/calEvent')}>Organization</button>
          </div>
+         </div>
+         
        </>
     )
    }

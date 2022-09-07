@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState,useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './Register.css';
@@ -10,6 +10,11 @@ const Register = (props) => {
   const [msg,setMsg] = useState('')
 
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    // const body=document.body;
+    // body.className.add('bodyLog');
+  },[])
 
   const register = async (e) => {
     e.preventDefault();
