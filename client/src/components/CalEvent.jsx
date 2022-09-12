@@ -22,6 +22,7 @@ import { Fragment, useState, useEffect, useContext } from 'react';
 import {AppContext} from '../App'
 import jwt_decode from 'jwt-decode';
 import {useNavigate} from 'react-router-dom';
+import { axiosInstance } from '../config';
 
 const nn = [
   {
@@ -103,7 +104,7 @@ export default function Example() {
 
    async function showEvents(){
     try{
-      const results = await axios.get('/getEvents');
+      const results = await axiosInstance.get('/getEvents');
       if(results.status === 200){
         setMeetings(results.data)
         console.log(meetings);
@@ -254,10 +255,11 @@ function Meeting({ meeting }) {
     }
   },[])
 
-  function bookDate(evt){
+  async function bookDate(evt){
     console.log(evt.target.value);
     setParams(evt.target.value);
-    getEmail(evt.target.value);
+    await getEmail(evt.target.value);
+    deleteEvent(evt.target.value);
     
     const div=document.getElementById('resOk');
     div.classList.remove('disappear');
@@ -265,8 +267,9 @@ function Meeting({ meeting }) {
    
    async function getEmail(params){
     try{
-      const result = await axios.get(`/getEmail/${params}`);
-      sendEmail(result.data[0].email);
+      const result = await axiosInstance.get(`/getEmail/${params}`);
+       axiosInstance.get(`/sendEmail/${result.data[0].email}/${uemail}`);
+      // sendEmail(result.data[0].email);
     }
     catch(e){
       console.log(e);
@@ -275,18 +278,19 @@ function Meeting({ meeting }) {
 
      async function sendEmail(mail){
       try{
-        const result = await axios.get(`/sendEmail/${mail}/${uemail}`);
+        await axiosInstance.get(`/sendEmail/${mail}/${uemail}`);
         console.log('send');
+        
       }
       catch(e){
         console.log(e);
       }
-     deleteEvent(params);
+     
      }
 
   async function deleteEvent(params){
     try{
-      const result = await axios.put(`/delEvent/${params}`,{
+      const result = await axiosInstance.put(`/delEvent/${params}`,{
       })
       if(result.status==200){
         //showEvents();

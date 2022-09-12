@@ -21,6 +21,7 @@ import { Fragment, useState, useEffect, useContext} from 'react'
 import {AppContext} from '../App'
 import jwt_decode from 'jwt-decode';
 import {useNavigate} from 'react-router-dom';
+import { axiosInstance } from '../config';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -61,8 +62,8 @@ export default function AddEvent() {
   async function addData(){
     console.log(selectedDay,events);
     try{
-      const result = await axios.post('/addEvent',{
-        eventname:events,email,eventdate:selectedDay,username,imageurl
+      const result = await axiosInstance.post('/addEvent',{
+        eventname:events,email,eventdate:selectedDay+1,username,imageurl
       });
       console.log(result);
     }

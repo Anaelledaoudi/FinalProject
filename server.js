@@ -23,3 +23,11 @@ app.use(cookieParser());
 app.use(users_router);
 app.use(events_router);
 
+app.use(express.static(path.join(__dirname, "/client/build")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
+
+// "proxy": "http://localhost:5000",
+
