@@ -63,7 +63,7 @@ export default function AddEvent() {
     console.log(selectedDay,events);
     try{
       const result = await axiosInstance.post('/addEvent',{
-        eventname:events,email,eventdate:selectedDay+1,username,imageurl
+        eventname:events,email,eventdate:selectedDay2,username,imageurl
       });
       console.log(result);
     }
