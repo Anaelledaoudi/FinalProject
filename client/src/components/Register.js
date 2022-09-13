@@ -2,6 +2,7 @@ import {useState,useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './Register.css';
+import { axiosInstance } from '../config';
 
 const Register = (props) => {
   const [username, setUsername] = useState('')
@@ -19,7 +20,7 @@ const Register = (props) => {
   const register = async (e) => {
     e.preventDefault();
     try{
-      const result = await axios.post('/signup',{
+      const result = await axiosInstance.post('/signup',{
         username,email,password
       });
       console.log(result);
